@@ -1,15 +1,16 @@
 from selenium.webdriver.common.by import By
+from locators.login import Locators
 
 class Login():
     def __init__(self, driver):
         self.driver = driver
 
-    def input_username(self):
-        self.driver.find_element(By.ID, 'user-name').send_keys('standard_user')
+    def input_username(self,username):
+        self.driver.find_element(By.ID, Locators.input_username).send_keys(username)
     
-    def input_password(self):
-        self.driver.find_element(By.ID, 'password').send_keys('standard_user')
+    def input_password(self,password):
+        self.driver.find_element(By.ID, Locators.input_password).send_keys(password)
     
-    def click_button(self):
-        self.driver.find_element(By.ID, 'login-button').click()
+    def click_login_button(self):
+        self.driver.find_element(By.ID, Locators.login_button).click()
         

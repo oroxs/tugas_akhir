@@ -1,24 +1,11 @@
 import pytest
-from selenium import webdriver
 from pages.login import Login
+from data.login_data import DataLogin
 from pages.product import Product
 from pages.cart import Cart
 from pages.checkout_1 import Checkout1
 from pages.checkout_2 import Checkout2
 from pages.checkout_3 import Checkout3
-
-@pytest.fixture
-def setup():
-    #precondition
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option('detach', True)
-    driver = webdriver.Chrome(options=options)
-    driver.maximize_window()
-    driver.get('https://saucedemo.com')
-
-    yield driver
-    #Post condition
-    driver.close()
 
 def test_login(setup):
     login = Login(setup)
@@ -57,3 +44,18 @@ def test_login(setup):
     #Checkout 3
     assert checkout3.check_message() == 'Thank you for your order!'
     checkout3.click_finish_button()
+
+users = DataLogin.users
+         
+@pytest.mark.parametrize('username, password, error',users)
+def test_invalid_login(setup, username, password, error):
+    login = Login(setup)
+    login.input_username(username)
+    login.input_password(password)
+    login.click_login_button()
+
+    # Check error message
+    error_message = login.check_error_message()
+
+    assert error_message == error
+    assert setup.current_url == 'https://www.saucedemo.com/'

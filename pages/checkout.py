@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
-from locators.checkout1 import Locators
+from locators.checkout import Locators
 
-class Checkout1():
+class Checkout():
     def __init__(self, driver):
         self.driver = driver
 
@@ -16,3 +16,6 @@ class Checkout1():
 
     def click_checkout_button(self):
         self.driver.find_element(By.NAME, Locators.checkout_button).click()
+    
+    def click_finish_checkout(self):
+        self.driver.find_element(By.NAME, Locators.button_finish).click()

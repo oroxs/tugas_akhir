@@ -3,3 +3,4 @@ class Locators:
     input_lastname = 'lastName'
     input_postalcode = 'postalCode'
     checkout_button = 'continue'
+    button_finish = 'finish'

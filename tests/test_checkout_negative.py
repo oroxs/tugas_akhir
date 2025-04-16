@@ -5,7 +5,8 @@ from pages.login import Login
 from pages.product import Product
 from pages.cart import Cart
 from pages.checkout import Checkout
-from pages.checkout_complete import Checkout_complete
+from pages.checkout_2 import Checkout2
+from pages.checkout_complete import Checkout3
 
 checkout = DataUser.users
 users = DataLogin.valid_user
@@ -18,7 +19,8 @@ def test_checkout(setup,firstname, lastname, postalcode,username, password):
     product = Product(setup)
     cart = Cart(setup)
     checkout = Checkout(setup)
-    complete = Checkout_complete(setup)
+    checkout2 = Checkout2(setup)
+    checkout3 = Checkout3(setup)
 
 
     login.input_username(username)
@@ -29,6 +31,7 @@ def test_checkout(setup,firstname, lastname, postalcode,username, password):
     assert title == 'Products'
     assert setup.current_url == 'https://www.saucedemo.com/inventory.html'
 
+    #add to cart
     product.click_add_to_chart_button()
     product.click_shopping_cart_button()
     
@@ -38,14 +41,14 @@ def test_checkout(setup,firstname, lastname, postalcode,username, password):
     cart.click_checkout_button()
 
     #Checkout 1
-    checkout.input_firstname(firstname)
-    checkout.input_lastname(lastname)
-    checkout.input_postalcode(postalcode)
-    checkout.click_checkout_button()
+    checkout1.input_firstname(firstname)
+    checkout1.input_lastname(lastname)
+    checkout1.input_postalcode(postalcode)
+    checkout1.click_checkout_button()
 
     #Checkout 2
-    checkout.click_finish_checkout()
+    checkout2.click_finish_button()
 
     #Checkout 3
-    assert complete.check_message() == 'Thank you for your order!'
-    complete.click_finish_button()
+    assert checkout3.check_message() == 'Thank you for your order!'
+    checkout3.click_finish_button()

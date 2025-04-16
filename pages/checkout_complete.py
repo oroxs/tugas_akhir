@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
-from locators.checkout3 import Locators
+from locators.checkout_complete import Locators
 
-class Checkout3():
+class Checkout_complete():
     def __init__(self, driver):
         self.driver = driver
 

@@ -19,3 +19,6 @@ class Checkout():
     
     def click_finish_checkout(self):
         self.driver.find_element(By.NAME, Locators.button_finish).click()
+    
+    def check_error_message(self):
+        return self.driver.find_element(By.XPATH, Locators.error_msg).text

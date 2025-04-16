@@ -4,3 +4,4 @@ class Locators:
     input_postalcode = 'postalCode'
     checkout_button = 'continue'
     button_finish = 'finish'
+    error_msg = '//*[@id="checkout_info_container"]/div/form/div[1]/div[4]'

@@ -37,15 +37,15 @@ def test_checkout(setup,firstname, lastname, postalcode,username, password):
 
     cart.click_checkout_button()
 
-    #Checkout 1
+    #Checkout 
     checkout.input_firstname(firstname)
     checkout.input_lastname(lastname)
     checkout.input_postalcode(postalcode)
     checkout.click_checkout_button()
-
-    #Checkout 2
     checkout.click_finish_checkout()
 
-    #Checkout 3
+    #finsih checkout
+    assert complete.check_title() == 'Checkout: Complete!'
+    assert complete.check_image() == 'https://www.saucedemo.com/checkout-complete.png'
     assert complete.check_message() == 'Thank you for your order!'
     complete.click_finish_button()

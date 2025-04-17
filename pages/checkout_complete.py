@@ -10,3 +10,6 @@ class Checkout_complete():
     
     def click_finish_button(self):
         self.driver.find_element(By.NAME, Locators.button_back_home).click()
+    
+    def check_title(self):
+        return self.driver.find_element(By.XPATH, Locators.title).text

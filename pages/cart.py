@@ -11,3 +11,6 @@ class Cart():
 
     def click_checkout_button(self):
         self.driver.find_element(By.NAME, Locators.button_checkout).click()
+    
+    def check_title(self):
+        return self.driver.find_element(By.XPATH, Locators.title).text

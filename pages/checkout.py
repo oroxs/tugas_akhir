@@ -5,6 +5,9 @@ class Checkout():
     def __init__(self, driver):
         self.driver = driver
 
+    def check_title(self):
+        return self.driver.find_element(By.XPATH, Locators.title).text
+
     def input_firstname(self,firstname):
         self.driver.find_element(By.NAME, Locators.input_firstname).send_keys(firstname)
     

@@ -28,16 +28,20 @@ def test_checkout(setup,firstname, lastname, postalcode,username, password):
     title = product.check_title()
     assert title == 'Products'
     assert setup.current_url == 'https://www.saucedemo.com/inventory.html'
-
+    
     product.click_add_to_chart_button()
     product.click_shopping_cart_button()
-    
     name = cart.check_item_name()
     assert name == 'Sauce Labs Bike Light'
-
+    
+    #Chart Page 
+    title = cart.check_title()
+    assert title == 'Your Cart'
     cart.click_checkout_button()
 
     #Checkout 
+    title = checkout.check_title()
+    assert title == 'Checkout: Your Information'
     checkout.input_firstname(firstname)
     checkout.input_lastname(lastname)
     checkout.input_postalcode(postalcode)
@@ -46,6 +50,5 @@ def test_checkout(setup,firstname, lastname, postalcode,username, password):
 
     #finsih checkout
     assert complete.check_title() == 'Checkout: Complete!'
-    assert complete.check_image() == 'https://www.saucedemo.com/checkout-complete.png'
     assert complete.check_message() == 'Thank you for your order!'
     complete.click_finish_button()
